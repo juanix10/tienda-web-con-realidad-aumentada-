@@ -18,6 +18,33 @@
             position: relative;
         }
 
+        /* Estilo para el logo en la parte superior derecha */
+        #logo {
+            position: absolute;
+            top: 15%;
+            left: 90%;
+            width: 130px; /* Tamaño inicial del logo */
+            height: auto;
+            z-index: 100;
+        }
+
+        /* Media query para pantallas pequeñas */
+        @media (max-width: 600px) {
+            #logo {
+                width: 80px; /* Ajusta el tamaño del logo en pantallas pequeñas */
+                position: absolute;
+                top: 2%;
+                left: 70%;
+            }
+        }
+
+        /* Media query para pantallas medianas (tabletas) */
+        @media (max-width: 1024px) and (min-width: 601px) {
+            #logo {
+                width: 90px; /* Ajusta el tamaño del logo en pantallas medianas */
+            }
+        }
+
         /* Estilo para el formulario que permanece visible y transparente */
         .form-container {
             position: absolute;
@@ -86,6 +113,9 @@
 
             .page-title {
                 font-size: 20px;
+                position: absolute;
+                top: -5%;
+                left: 0%;
                 /* Tamaño más pequeño en pantallas pequeñas */
             }
 
@@ -123,6 +153,7 @@
 </head>
 
 <body>
+    <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_de_la_UAEMex.svg/971px-Logo_de_la_UAEMex.svg.png" alt="Logo UAEMex">
     <div class="form-container">
         <div class="page-title">Tienda Cubos Rubiks/AR</div>
 
@@ -151,23 +182,23 @@
 
     <a-scene embedded arjs>
         <a-entity id="rubik" visible="false">
-            <a-image src="Imagenes/rubik.png" width="2" height="2" position="0 -1 2" rotation="-90 0 0"></a-image>
+            <a-image src="Imagenes/rubik.png" width="2" height="2" position="0 -1 2" rotation="90 0 0"></a-image>
         </a-entity>
 
         <a-entity id="megaminx" visible="false">
-            <a-image src="Imagenes/megaminx.png" width="2" height="2" position="0 -1 2" rotation="-90 0 0"></a-image>
+            <a-image src="Imagenes/megaminx.png" width="2" height="2" position="0 -1 2" rotation="90 0 0"></a-image>
         </a-entity>
 
         <a-entity id="pyraminx" visible="false">
-            <a-image src="Imagenes/piraminx.png" width="2" height="2" position="0 -1 2" rotation="-90 0 0"></a-image>
+            <a-image src="Imagenes/piraminx.png" width="2" height="2" position="0 -1 2" rotation="90 0 0"></a-image>
         </a-entity>
 
         <a-entity id="mirror" visible="false">
-            <a-image src="Imagenes/espejo.png" width="2" height="2" position="0 -1 2" rotation="-90 0 0"></a-image>
+            <a-image src="Imagenes/espejo.png" width="2" height="2" position="0 -1 2" rotation="90 0 0"></a-image>
         </a-entity>
 
         <a-entity id="ghost" visible="false">
-            <a-image src="Imagenes/ghost.png" width="2" height="2" position="0 -1 2" rotation="-90 0 0"></a-image>
+            <a-image src="Imagenes/ghost.png" width="2" height="2" position="0 -1 2" rotation="90 0 0"></a-image>
         </a-entity>
 
         <a-entity id="rubik4x4" visible="false">
