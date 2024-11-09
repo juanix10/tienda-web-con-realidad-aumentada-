@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda en Realidad Aumentada</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.min.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    .title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .form-container {
+      position: absolute;
+      top: 70px;
+      left: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 10;
+      color: white;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+    }
+    .form-container label, .form-container select, .form-container input {
+      color: white;
+      margin: 5px 0;
+    }
+    .form-container input {
+      width: 100%;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="title">Bienvenido a Nuestra Tienda en Realidad Aumentada</div>
+
+<div class="form-container">
+  <label for="product-select">Selecciona un producto:</label>
+  <select id="product-select" onchange="updateProductDisplay()">
+    <option value="">-- Selecciona un producto --</option>
+    <option value="rubik">Cubo Rubik</option>
+    <option value="megaminx">Megaminx</option>
+    <option value="pyraminx">Pyraminx</option>
+  </select>
+
+  <div id="product-details" style="display: none;">
+    <label>Nombre del Producto:</label>
+    <input type="text" id="product-name" readonly>
+    <label>Precio:</label>
+    <input type="text" id="product-price" readonly>
+    <label>Modelo:</label>
+    <input type="text" id="product-model" readonly>
+    <label>Marca:</label>
+    <input type="text" id="product-brand" readonly>
+  </div>
+</div>
+
+<a-scene embedded arjs>
+  <!-- Producto 1: Cubo Rubik -->
+  <a-entity id="rubik" visible="false">
+    <a-circle color="#ffffff" radius="1.0" position="0 -1 2" src="Imagenes/rubik.png" rotation="-90 0 0" material="opacity: 1;"></a-circle>
+  </a-entity>
+
+  <!-- Producto 2: Megaminx -->
+  <a-entity id="megaminx" visible="false">
+    <a-circle color="#ffffff" radius="1.0" position="0 -1 2" src="Imagenes/megaminx.png" rotation="-90 0 0" material="opacity: 1;"></a-circle>
+  </a-entity>
+
+  <!-- Producto 3: Pyraminx -->
+  <a-entity id="pyraminx" visible="false">
+    <a-circle color="#ffffff" radius="1.0" position="0 -1 2" src="Imagenes/piraminx.png" rotation="-90 0 0" material="opacity: 1;"></a-circle>
+  </a-entity>
+
+  <a-marker-camera preset="hiro"></a-marker-camera>
+</a-scene>
+
+<script>
+  function updateProductDisplay() {
+    // Ocultar todos los productos inicialmente en AR
+    document.getElementById('rubik').setAttribute('visible', 'false');
+    document.getElementById('megaminx').setAttribute('visible', 'false');
+    document.getElementById('pyraminx').setAttribute('visible', 'false');
+    
+    // Obtener el valor seleccionado en el menú desplegable
+    const selectedProduct = document.getElementById('product-select').value;
+    
+    // Mostrar detalles del formulario si hay un producto seleccionado
+    const productDetails = document.getElementById('product-details');
+    if (selectedProduct) {
+      productDetails.style.display = 'block';
+      // Actualizar la información en el formulario según el producto seleccionado
+      if (selectedProduct === 'rubik') {
+        document.getElementById('rubik').setAttribute('visible', 'true');
+        document.getElementById('product-name').value = 'Cubo Rubik';
+        document.getElementById('product-price').value = '$10';
+        document.getElementById('product-model').value = '3x3';
+        document.getElementById('product-brand').value = "Rubik's";
+      } else if (selectedProduct === 'megaminx') {
+        document.getElementById('megaminx').setAttribute('visible', 'true');
+        document.getElementById('product-name').value = 'Megaminx';
+        document.getElementById('product-price').value = '$15';
+        document.getElementById('product-model').value = 'Megaminx';
+        document.getElementById('product-brand').value = 'Moyu';
+      } else if (selectedProduct === 'pyraminx') {
+        document.getElementById('pyraminx').setAttribute('visible', 'true');
+        document.getElementById('product-name').value = 'Pyraminx';
+        document.getElementById('product-price').value = '$12';
+        document.getElementById('product-model').value = 'Pirámide';
+        document.getElementById('product-brand').value = 'QiYi';
+      }
+    } else {
+      // Ocultar el formulario si no hay producto seleccionado
+      productDetails.style.display = 'none';
+      document.getElementById('product-name').value = '';
+      document.getElementById('product-price').value = '';
+      document.getElementById('product-model').value = '';
+      document.getElementById('product-brand').value = '';
+    }
+  }
+</script>
+
+</body>
+</html>
